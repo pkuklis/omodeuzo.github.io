@@ -19,22 +19,30 @@
     }
 
 *{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
+body {
+  margin: 0;
   font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background: radial-gradient(1200px 600px at 10% 20%, #fff8f8 0%, transparent 15%),
               radial-gradient(1000px 500px at 90% 80%, #fff0f2 0%, transparent 15%),
               linear-gradient(180deg,var(--bg1),var(--bg2));
   color: #3b0f12;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding:4vh 4vw;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* ✅ FIX: dynamic height + safe areas + extra breathing room */
+  min-height: 100dvh;
+  padding: max(8vh, env(safe-area-inset-top))
+           max(6vw, env(safe-area-inset-right))
+           max(8vh, env(safe-area-inset-bottom))
+           max(6vw, env(safe-area-inset-left));
+
+  display: flex;
+  flex-direction: column;   /* top to bottom flow */
+  align-items: center;      /* keep card centered horizontally */
+  justify-content: flex-start; /* align content from top instead of vertical centering */
 }
+
+
 
 .card{
   width:min(900px, 96vw);

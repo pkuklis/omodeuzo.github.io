@@ -11,37 +11,42 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       background: #0b1220;
       color: #ffffff;
       text-align: center;
+      padding: 20px;
     }
     .container {
-      max-width: 600px;
+      max-width: 700px;
+      width: 100%;
     }
     h1 {
       color: #7dd3fc;
+      font-size: clamp(20px, 5vw, 36px);
     }
     .countdown {
       display: flex;
       justify-content: center;
       gap: 20px;
       margin-top: 20px;
+      flex-wrap: wrap;
     }
     .time {
       background: rgba(255, 255, 255, 0.05);
       padding: 20px;
       border-radius: 10px;
-      min-width: 80px;
+      flex: 1 1 120px;
+      min-width: 100px;
     }
     .time span {
       display: block;
-      font-size: 2.5em;
+      font-size: clamp(24px, 8vw, 48px);
       font-weight: bold;
     }
     .label {
       margin-top: 8px;
-      font-size: 0.9em;
+      font-size: clamp(12px, 2.5vw, 16px);
       color: #9aa8bf;
     }
     #message {
@@ -54,6 +59,7 @@
       margin-top: 30px;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 15px;
     }
     .buttons a {
@@ -97,6 +103,7 @@
     <div class="buttons">
       <a href="website1.html">Website 1</a>
       <a href="website2.html">Website 2</a>
+      <a href="website3.html">Website 3</a>
     </div>
   </div>
 

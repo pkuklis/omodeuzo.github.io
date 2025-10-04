@@ -1,0 +1,267 @@
+<!doctype html>
+
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Boa noite, meu amor 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #fff0f0;
+      --bg2: #ffe8e8;
+      --accent: #d7263d;
+      --muted: #6b2a2a;
+      --card: rgba(255,255,255,0.85);
+      --glass: rgba(255, 255, 255, 0.6);
+      --shadow: 0 8px 30px rgba(199, 45, 60, 0.18);
+      --radius: 20px;
+    }
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(1200px 600px at 10% 20%, #fff8f8 0%, transparent 15%),
+              radial-gradient(1000px 500px at 90% 80%, #fff0f2 0%, transparent 15%),
+              linear-gradient(180deg,var(--bg1),var(--bg2));
+  color: #3b0f12;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:4vh 4vw;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100%;
+}
+
+.card{
+  width:min(900px, 96vw);
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,240,240,0.85));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 3.5vw, 48px);
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(215,38,61,0.08);
+}
+
+/* Romantic header */
+header{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  margin-bottom:18px;
+}
+.emoji{
+  font-size:48px;
+  transform:translateY(2px);
+  filter:drop-shadow(0 6px 14px rgba(215,38,61,0.12));
+}
+h1{
+  margin:0;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(30px, 6vw, 48px);
+  color: var(--accent);
+  text-shadow: 0 3px 12px rgba(215,38,61,0.14);
+  letter-spacing:0.5px;
+}
+.subtitle{
+  margin:0;
+  font-size:14px;
+  color:var(--muted);
+  opacity:0.9;
+  font-weight:600;
+}
+
+main .message{
+  margin-top:12px;
+  font-size: clamp(16px, 2.2vw, 20px);
+  line-height:1.6;
+  color:#3b0f12;
+  background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,240,240,0.4));
+  padding: clamp(18px, 2.5vw, 28px);
+  border-radius:12px;
+  border:1px solid rgba(215,38,61,0.06);
+}
+
+.meta{
+  margin-top:14px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.pill{
+  background:var(--glass);
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:600;
+  color:var(--muted);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  border:1px solid rgba(215,38,61,0.04);
+  font-size:14px;
+}
+
+/* heart trail */
+.hearts{
+  position:absolute;
+  pointer-events:none;
+  inset:0;
+  overflow:hidden;
+}
+.hearts i{
+  position:absolute;
+  font-style:normal;
+  opacity:0;
+  transform:translateY(20px) scale(0.8);
+  animation:floatUp linear forwards;
+  filter:drop-shadow(0 8px 18px rgba(215,38,61,0.06));
+}
+@keyframes floatUp{
+  0%{opacity:0; transform:translateY(20px) scale(0.6)}
+  10%{opacity:1; transform:translateY(0) scale(1)}
+  100%{opacity:0; transform:translateY(-340px) scale(1.2)}
+}
+
+/* responsive footer */
+footer{
+  margin-top:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.cta{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+}
+button{
+  border:0;
+  padding:10px 16px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:14px;
+  background:linear-gradient(90deg,var(--accent),#ff4b6e);
+  color:white;
+  box-shadow: 0 8px 20px rgba(215,38,61,0.18);
+}
+.muted-link{
+  color:var(--muted);
+  font-size:14px;
+  text-decoration:none;
+  opacity:0.9;
+  padding:8px 12px;
+  border-radius:8px;
+  border:1px dashed rgba(215,38,61,0.06);
+  background:transparent;
+}
+
+/* small screens */
+@media (max-width:520px){
+  .emoji{font-size:40px}
+  header{gap:10px}
+  .pill{font-size:13px}
+  button{padding:10px 14px}
+}
+
+/* subtle floating hearts positions (generated) */
+
+  </style>
+</head>
+<body>
+  <div class="card" role="article" aria-label="Mensagem romântica">
+    <div class="hearts" aria-hidden="true">
+      <!-- floating hearts (positions & timings set inline to vary them) -->
+      <i style="left:10%; bottom:8%; animation-duration:8s; animation-delay:0s">💖</i>
+      <i style="left:20%; bottom:2%; animation-duration:10s; animation-delay:1s">❤️</i>
+      <i style="left:35%; bottom:5%; animation-duration:9s; animation-delay:0.6s">❣️</i>
+      <i style="left:48%; bottom:4%; animation-duration:11s; animation-delay:0.9s">💘</i>
+      <i style="left:62%; bottom:6%; animation-duration:9.5s; animation-delay:0.2s">💕</i>
+      <i style="left:75%; bottom:3%; animation-duration:12s; animation-delay:1.6s">💓</i>
+      <i style="left:88%; bottom:7%; animation-duration:10.5s; animation-delay:0.3s">💞</i>
+    </div>
+
+<header>
+  <div class="emoji" aria-hidden="true">🌹</div>
+  <div>
+    <h1>Boa noite, meu amor</h1>
+    <p class="subtitle">Palavras que aquecem — um pequeno recado do coração 💌</p>
+  </div>
+</header>
+
+<main>
+  <article class="message">
+    Boa noite, meu amor. Hoje é dia 4 de outubro de 2025. Faltam só 106 dias para eu finalmente poder te abraçar. Pouco mais de 3 meses. Sempre que a gente se fala por chamada e eu vejo o seu quarto, sou levado imediatamente de volta a 2021. Duas almas se encontrando no lugar mais improvável. E, depois de anos, seguindo o caminho mais óbvio. Uma para a outra.
+    <br><br>
+    Seja o que for que aconteça no futuro, eu te quero ao meu lado. Quero que todo você seja meu. E todo eu seja seu. Meu coração pertence a você.
+  </article>
+
+  <div class="meta" aria-hidden="false">
+    <div class="pill">📅 04/10/2025</div>
+    <div class="pill">⏳ Faltam 106 dias</div>
+    <div class="pill">💞 Sempre sua</div>
+  </div>
+</main>
+
+  </div>
+
+  <script>
+    // Small interactive bits (all client-side; single file).
+    // Play/pause floating hearts by toggling animation-play-state.
+    const hearts = document.querySelectorAll('.hearts i');
+    const toggle = document.getElementById('togglePlay');
+    let playing = true;
+
+    function setHeartsState(state){
+      hearts.forEach(h => {
+        h.style.animationPlayState = state ? 'running' : 'paused';
+      });
+      toggle.textContent = state ? '✨ Pausar animação' : '✨ Ativar animação';
+      toggle.setAttribute('aria-pressed', String(!state));
+      playing = state;
+    }
+
+    toggle.addEventListener('click', () => setHeartsState(!playing));
+    // start paused on small devices for performance
+    if(window.innerWidth < 520) setHeartsState(false);
+
+    // Download the current HTML as a file for the user.
+    document.getElementById('download').addEventListener('click', () => {
+      const html = '<!doctype html>\\n' + document.documentElement.outerHTML;
+      const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'mensagem-romantica.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // tiny accessibility improvement: reveal aria-hidden hearts to screen readers when toggled on (optional)
+    toggle.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') toggle.click();
+    });
+
+    // subtle stagger re-animation to keep the scene lively
+    function randomizeHearts(){
+      hearts.forEach((h, i) => {
+        const dur = 8 + Math.random() * 6;
+        const delay = Math.random() * 2;
+        h.style.animationDuration = dur + 's';
+        h.style.animationDelay = delay + 's';
+        h.style.left = (5 + Math.random()*90) + '%';
+      });
+    }
+    randomizeHearts();
+    setInterval(randomizeHearts, 12000);
+  </script>
+
+</body>
+</html>

@@ -50,6 +50,25 @@
       color: #7dd3fc;
       display: none;
     }
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .buttons a {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #7dd3fc;
+      color: #0b1220;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .buttons a:hover {
+      background: #38bdf8;
+    }
   </style>
 </head>
 <body>
@@ -74,6 +93,11 @@
       </div>
     </div>
     <div id="message">🎉 It's January 19, 2026!</div>
+
+    <div class="buttons">
+      <a href="website1.html">Website 1</a>
+      <a href="website2.html">Website 2</a>
+    </div>
   </div>
 
   <script>

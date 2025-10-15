@@ -75,6 +75,9 @@
     .buttons a:hover {
       background: #38bdf8;
     }
+    /* Only the red variant */
+    .buttons a.red { background: #ff1763; }
+    .buttons a.red:hover { background: #ff6a9c; }
   </style>
 </head>
 <body>
@@ -104,38 +107,42 @@
       <a href="website1.html">Website 1</a>
       <a href="website2.html">Website 2</a>
       <a href="website3.html">Website 3</a>
-      <a href="website4.html">Website 4</a>
+      <a class="red" href="website4.html">Website 4</a>
     </div>
   </div>
 
-  <script>
-    const countdownEl = document.getElementById('countdown');
-    const messageEl = document.getElementById('message');
-    const targetDate = new Date("2026-01-19T00:00:00");
+<script>
+  const countdownEl = document.getElementById('countdown');
+  const messageEl = document.getElementById('message');
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
+  // São Paulo time = 2026-01-19 20:10  →  UTC = 2026-01-19 23:10
+  const targetDate = new Date("2026-01-19T23:10:00Z");
 
-      if (diff <= 0) {
-        countdownEl.style.display = 'none';
-        messageEl.style.display = 'block';
-        return;
-      }
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    if (diff <= 0) {
+      countdownEl.style.display = 'none';
+      messageEl.textContent = "🎉 It's January 19, 2026, 20:10 in São Paulo!";
+      messageEl.style.display = 'block';
+      return;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
 </body>
 </html>

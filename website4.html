@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Para meu amor 💌</title>
+  <style>
+    :root{
+      --page-max: 60ch;                 /* controls line length */
+      --pad-block: clamp(4vh, 6vh, 10vh);/* top/bottom breathing room */
+      --gap: clamp(16px, 4vw, 28px);
+      --font-size: clamp(1rem, 1.15rem + 0.25vw, 1.35rem);
+      --emoji-size: clamp(20px, 6vw, 36px);
+      --img-radius: 14px;
+    }
+
+    /* Page reset + theme */
+    html,body{
+      height:100%;
+      margin:0;
+      background:#000;
+      color:#fff;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    body{
+      display:flex;
+      justify-content:center;
+      padding-block: var(--pad-block);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-size: var(--font-size);
+      line-height: 1.6;
+    }
+
+    /* Layout */
+    main{
+      width:min(92vw, var(--page-max));
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: var(--gap);
+      text-align: left;
+    }
+    .note{
+      filter: drop-shadow(0 0 0.25rem rgba(255,255,255,0.15));
+    }
+    p{
+      margin:0;
+      word-wrap:break-word;
+    }
+
+    /* Emojis */
+    .emoji-row{
+      display:flex;
+      gap: clamp(10px, 2.5vw, 18px);
+      align-items:center;
+      justify-content:center;
+      height: calc(var(--emoji-size) * 1.8);
+      pointer-events:none;
+      user-select:none;
+    }
+    .emoji{
+      font-size: var(--emoji-size);
+      display:inline-block;
+      will-change: transform, opacity;
+    }
+    /* floating cats */
+    @keyframes floaty{
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.85; }
+      50%  { transform: translateY(-8px) rotate(2deg); opacity: 1; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 0.85; }
+    }
+    /* pulsing hearts */
+    @keyframes pulse{
+      0%,100%{ transform: scale(1); opacity: 0.9; }
+      50%    { transform: scale(1.16); opacity: 1; }
+    }
+    .cat  { animation: floaty 3.8s ease-in-out infinite; }
+    .cat:nth-child(2){ animation-delay: .5s }
+    .cat:nth-child(3){ animation-delay: 1s }
+
+    .heart{ animation: pulse 1.8s ease-in-out infinite; }
+    .heart:nth-child(4){ animation-delay: .3s }
+    .heart:nth-child(5){ animation-delay: .6s }
+
+    /* Photo */
+    figure{
+      margin:0;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 10px;
+    }
+    img{
+      width: 100%;
+      max-width: clamp(260px, 88vw, 520px); /* keeps it cute, not giant */
+      height: auto;
+      border-radius: var(--img-radius);
+      display:block;
+      object-fit: cover;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 8px 30px rgba(0,0,0,0.6);
+    }
+    figcaption{
+      font-size: 0.9em;
+      opacity: 0.8;
+      text-align:center;
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .emoji{ animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="emoji-row" aria-hidden="true">
+      <span class="emoji cat">🐈</span>
+      <span class="emoji cat">🐈‍⬛</span>
+      <span class="emoji cat">🐾</span>
+      <span class="emoji heart">💖</span>
+      <span class="emoji heart">💘</span>
+    </div>
+
+    <section class="note" aria-label="Carta">
+      <p>
+        Amor! Faltam só mais três meses pra eu finalmente te ter nos meus braços. Olha! Somos nós no Airbnb. Mas acho que estamos meio grandes demais pra cama. Osh, não vi nenhuma medida real do apartamento ainda, vai ver é assim mesmo... E essa tua cara tá tipo acabei de soltar algo "silencioso, mas perigoso”. Enfim, te amo! Até logo! Muito prazer!
+      </p>
+    </section>
+    
+    <figure>
+      <!-- 🔗 Replace the src below with your Imgur link (e.g., https://i.imgur.com/xxxxx.jpg) -->
+      <img src="img0.jpeg" alt="Nós dois no Airbnb">
+      <figcaption>(Nós dois, do jeitinho que eu te imagino — e te quero — bem aqui.)</figcaption>
+    </figure>
+
+    <div class="emoji-row" aria-hidden="true">
+      <span class="emoji heart">❤️</span>
+      <span class="emoji heart">💓</span>
+      <span class="emoji heart">💗</span>
+    </div>
+  </main>
+</body>
+</html>

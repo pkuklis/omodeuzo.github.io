@@ -75,9 +75,65 @@
     .buttons a:hover {
       background: #38bdf8;
     }
-    /* Only the red variant */
     .buttons a.yellow { background: #ff1763; }
     .buttons a.yellow:hover { background: #ff6095; }
+
+    /* --- NEW TRACKER STYLES --- */
+    .tracker-container {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .tracker-title {
+      margin-bottom: 20px;
+      color: #9aa8bf;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .tracker-grid {
+      display: grid;
+      /* Creates a responsive grid of small boxes */
+      grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+      gap: 8px;
+      justify-content: center;
+    }
+    .day-box {
+      aspect-ratio: 1; /* Keeps them square */
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #9aa8bf;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    /* Style for a "Good Day" (Heart) */
+    .day-box.heart {
+      background: #17ff1b; /* Pink/Red */
+      color: black;
+      border: 1px solid #67ff6a;
+      font-weight: bold;
+      box-shadow: 0 0 10px #0d8d0f;
+    }
+    /* Adds a small heart icon after the number */
+    .day-box.heart::after {
+      content: '♥'; 
+      font-size: 10px;
+      position: absolute;
+      top: 2px;
+      right: 3px;
+    }
+
+    /* Style for a "Bad Day" (Cross) */
+    .day-box.cross {
+      background: rgba(255, 0, 0, 0.1);
+      color: #7f8ea3;
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
@@ -110,8 +166,78 @@
       <a href="website4.html">Website 4</a>
       <a href="website5.html">Website 5</a>
       <a class="yellow" href="website6.html">Website 6</a>
-
     </div>
+
+    <!-- NEW TRACKER ELEMENT -->
+    <div class="tracker-container">
+      <div class="tracker-grid">
+        <!-- Grid Items 60 to 0 -->
+        <!-- When a day passes, add class="heart" or class="cross" to the div -->
+        
+        <div class="day-box heart">60</div>
+        <div class="day-box">59</div>
+        <div class="day-box">58</div>
+        <div class="day-box">57</div>
+        <div class="day-box">56</div>
+        <div class="day-box">55</div>
+        <div class="day-box">54</div>
+        <div class="day-box">53</div>
+        <div class="day-box">52</div>
+        <div class="day-box">51</div>
+        <div class="day-box">50</div>
+        <div class="day-box">49</div>
+        <div class="day-box">48</div>
+        <div class="day-box">47</div>
+        <div class="day-box">46</div>
+        <div class="day-box">45</div>
+        <div class="day-box">44</div>
+        <div class="day-box">43</div>
+        <div class="day-box">42</div>
+        <div class="day-box">41</div>
+        <div class="day-box">40</div>
+        <div class="day-box">39</div>
+        <div class="day-box">38</div>
+        <div class="day-box">37</div>
+        <div class="day-box">36</div>
+        <div class="day-box">35</div>
+        <div class="day-box">34</div>
+        <div class="day-box">33</div>
+        <div class="day-box">32</div>
+        <div class="day-box">31</div>
+        <div class="day-box">30</div>
+        <div class="day-box">29</div>
+        <div class="day-box">28</div>
+        <div class="day-box">27</div>
+        <div class="day-box">26</div>
+        <div class="day-box">25</div>
+        <div class="day-box">24</div>
+        <div class="day-box">23</div>
+        <div class="day-box">22</div>
+        <div class="day-box">21</div>
+        <div class="day-box">20</div>
+        <div class="day-box">19</div>
+        <div class="day-box">18</div>
+        <div class="day-box">17</div>
+        <div class="day-box">16</div>
+        <div class="day-box">15</div>
+        <div class="day-box">14</div>
+        <div class="day-box">13</div>
+        <div class="day-box">12</div>
+        <div class="day-box">11</div>
+        <div class="day-box">10</div>
+        <div class="day-box">9</div>
+        <div class="day-box">8</div>
+        <div class="day-box">7</div>
+        <div class="day-box">6</div>
+        <div class="day-box">5</div>
+        <div class="day-box">4</div>
+        <div class="day-box">3</div>
+        <div class="day-box">2</div>
+        <div class="day-box">1</div>
+        <div class="day-box">0</div>
+      </div>
+    </div>
+
   </div>
 
 <script>

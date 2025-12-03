@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História</title>
+    <!-- Importing the romantic font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & BASIC SETUP --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: #050505;
+            color: #e0e0e0;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 550px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: moveUpFade 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+            /* Glassmorphism background */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* --- THE LIVE COUNTER --- */
+        .counter-title {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 15px;
+        }
+
+        #timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px; 
+            margin-bottom: 30px;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .number {
+            font-size: 2rem;
+            font-weight: 700;
+            /* Gradient Number - FIXED */
+            background: linear-gradient(135deg, #ff66c4, #66a6ff);
+            background-clip: text;          /* Standard */
+            -webkit-background-clip: text;  /* Safari/Chrome */
+            -webkit-text-fill-color: transparent;
+            color: transparent;             /* Standard fallback */
+            
+            font-variant-numeric: tabular-nums; 
+        }
+
+        .label {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* --- TEXT STYLING --- */
+        .text-content {
+            margin-bottom: 2.5rem;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .highlight-text {
+            color: #fff;
+            font-style: italic;
+        }
+
+        .divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #555, transparent);
+            margin: 25px auto;
+        }
+
+        .final-line {
+            display: block;
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            
+            /* Gradient Text - FIXED */
+            background: linear-gradient(90deg, #ff8dc7, #6a85ff);
+            background-clip: text;          /* Standard */
+            -webkit-background-clip: text;  /* Safari/Chrome */
+            -webkit-text-fill-color: transparent;
+            color: transparent;             /* Standard fallback */
+        }
+
+        /* --- PHOTO & GLOW --- */
+        .photo-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            filter: grayscale(10%);
+            transition: filter 0.5s ease;
+        }
+
+        .photo-wrapper:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes moveUpFade {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        @keyframes breathing {
+            0% { transform: scale(0.99); opacity: 0.6; filter: blur(15px); }
+            100% { transform: scale(1.01); opacity: 0.9; filter: blur(25px); }
+        }
+
+        @media (max-width: 600px) {
+            .number { font-size: 1.5rem; }
+            .time-unit { min-width: 50px; }
+            .container { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        
+        <div class="counter-title">Juntos Há</div>
+        <div id="timer">
+            <div class="time-unit">
+                <span id="days" class="number">00</span>
+                <span class="label">Dias</span>
+            </div>
+            <div class="time-unit">
+                <span id="hours" class="number">00</span>
+                <span class="label">Horas</span>
+            </div>
+            <div class="time-unit">
+                <span id="minutes" class="number">00</span>
+                <span class="label">Min</span>
+            </div>
+            <div class="time-unit">
+                <span id="seconds" class="number">00</span>
+                <span class="label">Seg</span>
+            </div>
+        </div>
+
+        <div class="text-content">
+            <p>
+                Separados por só mais 47 dias. Não existem palavras que consigam descrever o que eu sinto por você. Esse sentimento de desejo sem limites.
+            </p>
+
+            <div class="divider"></div>
+
+            <p>
+                Quando, de repente, todo poema de amor começa a fazer sentido. Quando decidir voar para o outro lado do mundo parece mais fácil do que escolher qual shampoo comprar. 
+            </p>
+            <p>
+                Quando passo a esperar ansiosamente cada aula de gramática de uma língua que eu só falo com você. Quando te ligar coloca um sorriso no meu rosto que parece nunca ter fim.
+                <br><br>
+                <span class="highlight-text">Se isso não é amor, então o que é?</span>
+            </p>
+
+            <span class="final-line">
+                Saiba que eu te amo, amo noite e dia.
+            </span>
+        </div>
+
+        <div class="photo-wrapper">
+            <img src="website7.jpg" alt="Nós">
+        </div>
+    </main>
+
+    <script>
+        // ==========================================
+        // REMEMBER TO UPDATE THE DATE BELOW!
+        // ==========================================
+        const startDate = new Date("2025-07-04T14:00:00"); 
+
+        function updateTimer() {
+            const now = new Date();
+            const difference = now - startDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((difference / 1000 / 60) % 60);
+            const seconds = Math.floor((difference / 1000) % 60);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+
+</body>
+</html>

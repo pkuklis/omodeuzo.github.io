@@ -2,251 +2,362 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Countdown to January 19, 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Countdown to Her</title>
+  
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg-color: #050505;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-blue: #38bdf8;
+      --accent-pink: #f43f5e;
+      --accent-green: #10b981; /* Bright Green */
+      --accent-green-glow: rgba(16, 185, 129, 0.4);
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
       min-height: 100vh;
-      background: #0b1220;
-      color: #ffffff;
-      text-align: center;
-      padding: 20px;
-    }
-    .container {
-      max-width: 700px;
-      width: 100%;
-    }
-    h1 {
-      color: #7dd3fc;
-      font-size: clamp(20px, 5vw, 36px);
-    }
-    .countdown {
       display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      background-image: radial-gradient(circle at 50% 0%, #111827 0%, #050505 60%);
     }
-    .time {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      border-radius: 10px;
-      flex: 1 1 120px;
-      min-width: 100px;
-    }
-    .time span {
-      display: block;
-      font-size: clamp(24px, 8vw, 48px);
-      font-weight: bold;
-    }
-    .label {
-      margin-top: 8px;
-      font-size: clamp(12px, 2.5vw, 16px);
-      color: #9aa8bf;
-    }
-    #message {
-      margin-top: 20px;
-      font-size: 1.2em;
-      color: #7dd3fc;
-      display: none;
-    }
-    .buttons {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-    .buttons a {
-      display: inline-block;
-      padding: 12px 20px;
-      background: #7dd3fc;
-      color: #0b1220;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .buttons a:hover {
-      background: #38bdf8;
-    }
-    .buttons a.yellow { background: #ff1763; }
-    .buttons a.yellow:hover { background: #ff6095; }
 
-    /* --- NEW TRACKER STYLES --- */
-    .tracker-container {
-      margin-top: 50px;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    .container {
+      max-width: 650px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
     }
-    .tracker-title {
-      margin-bottom: 20px;
-      color: #9aa8bf;
+
+    /* --- HEADER --- */
+    header { text-align: center; }
+    
+    h1 {
+      font-weight: 800;
+      font-size: clamp(24px, 6vw, 40px);
+      margin: 0 0 10px 0;
+      background: linear-gradient(to right, #ffffff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
       font-size: 14px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
     }
-    .tracker-grid {
+
+    /* --- COUNTDOWN --- */
+    .countdown-grid {
       display: grid;
-      /* Creates a responsive grid of small boxes */
-      grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-      gap: 8px;
-      justify-content: center;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
     }
-    .day-box {
-      aspect-ratio: 1; /* Keeps them square */
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
+
+    @media (max-width: 500px) {
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+    }
+
+    .time-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px 10px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .time-number {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(28px, 8vw, 42px);
+      font-weight: 700;
+      color: var(--accent-blue);
+      text-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+
+    .time-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+
+    #message {
+      text-align: center;
+      color: var(--accent-green);
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: none;
+      padding: 20px;
+      border: 1px solid var(--accent-green);
+      border-radius: 12px;
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    /* --- PILL BUTTONS --- */
+    .nav-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .pill {
+      text-decoration: none;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .pill:hover {
+      background: var(--text-main);
+      color: var(--bg-color);
+      transform: translateY(-2px);
+    }
+
+    .pill.special {
+      background: rgba(244, 63, 94, 0.1);
+      border-color: rgba(244, 63, 94, 0.4);
+      color: var(--accent-pink);
+    }
+    .pill.special:hover {
+      background: var(--accent-pink);
+      color: white;
+    }
+
+    /* --- TRACKER GRID --- */
+    .tracker-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .tracker-header {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tracker-title { font-size: 16px; font-weight: 600; color: var(--text-muted); }
+    .tracker-legend { font-size: 10px; color: #555; }
+
+    .grid {
+      display: grid;
+      /* Responsive: Creates squares that fit 6-8 per row depending on mobile/desktop */
+      grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+      gap: 8px;
+    }
+
+    .day {
+      aspect-ratio: 1;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 14px;
-      color: #9aa8bf;
-      transition: all 0.3s ease;
+      color: #333; /* Faint number for neutral days */
+      border: 1px solid rgba(255,255,255,0.05);
       position: relative;
     }
 
-    /* Style for a "Good Day" (Heart) */
-    .day-box.heart {
-      background: #17ff1b; /* Pink/Red */
-      color: black;
-      border: 1px solid #67ff6a;
+    /* --- MANUAL STATUS STYLES --- */
+    
+    /* Good Day (Green + Heart) */
+    .day.good {
+      background: var(--accent-green);
+      color: #000;
       font-weight: bold;
-      box-shadow: 0 0 10px #0d8d0f;
+      border: none;
+      box-shadow: 0 0 15px var(--accent-green-glow);
     }
-    /* Adds a small heart icon after the number */
-    .day-box.heart::after {
-      content: '♥'; 
-      font-size: 10px;
+    .day.good::after {
+      content: '♥';
+      font-size: 9px;
       position: absolute;
       top: 2px;
       right: 3px;
     }
 
-    /* Style for a "Bad Day" (Cross) */
-    .day-box.cross {
-      background: rgba(255, 0, 0, 0.1);
-      color: #7f8ea3;
-      opacity: 0.7;
+    /* Bad Day (Red + Cross) */
+    .day.bad {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.5);
+      color: var(--accent-pink);
     }
+    .day.bad::after {
+      content: '×';
+      font-size: 14px;
+      position: absolute;
+      top: 0px;
+      right: 4px;
+    }
+
   </style>
 </head>
 <body>
+
   <div class="container">
-    <h1>Countdown to January 19, 2026</h1>
-    <div class="countdown" id="countdown">
-      <div class="time">
-        <span id="days">0</span>
-        <div class="label">Days</div>
+    
+    <header>
+      <h1>Until We Meet</h1>
+      <div class="subtitle">January 19, 2026 • São Paulo</div>
+    </header>
+
+    <!-- COUNTDOWN JS -->
+    <div class="countdown-grid" id="countdown">
+      <div class="time-card">
+        <span class="time-number" id="days">0</span>
+        <div class="time-label">Days</div>
       </div>
-      <div class="time">
-        <span id="hours">00</span>
-        <div class="label">Hours</div>
+      <div class="time-card">
+        <span class="time-number" id="hours">00</span>
+        <div class="time-label">Hours</div>
       </div>
-      <div class="time">
-        <span id="minutes">00</span>
-        <div class="label">Minutes</div>
+      <div class="time-card">
+        <span class="time-number" id="minutes">00</span>
+        <div class="time-label">Minutes</div>
       </div>
-      <div class="time">
-        <span id="seconds">00</span>
-        <div class="label">Seconds</div>
+      <div class="time-card">
+        <span class="time-number" id="seconds">00</span>
+        <div class="time-label">Seconds</div>
       </div>
     </div>
-    <div id="message">🎉 It's January 19, 2026!</div>
+    <div id="message">🎉 The wait is over!</div>
 
-    <div class="buttons">
-      <a href="website1.html">Website 1</a>
-      <a href="website2.html">Website 2</a>
-      <a href="website3.html">Website 3</a>
-      <a href="website4.html">Website 4</a>
-      <a href="website5.html">Website 5</a>
-      <a href="website6.html">Website 6</a>
-      <a href="website7.html">Website 7</a>
-      <a class="yellow" href="website8.html">Website 8</a>
-    </div>
+    <!-- BUTTONS -->
+    <nav class="nav-pills">
+      <a href="website1.html" class="pill">Website 1</a>
+      <a href="website2.html" class="pill">Website 2</a>
+      <a href="website3.html" class="pill">Website 3</a>
+      <a href="website4.html" class="pill">Website 4</a>
+      <a href="website5.html" class="pill">Website 5</a>
+      <a href="website6.html" class="pill">Website 6</a>
+      <a href="website7.html" class="pill">Website 7</a>
+      <a href="website8.html" class="pill special">Website 8</a>
+    </nav>
 
-    <!-- NEW TRACKER ELEMENT -->
-    <div class="tracker-container">
-      <div class="tracker-grid">
-        <!-- Grid Items 60 to 0 -->
-        <!-- When a day passes, add class="heart" or class="cross" to the div -->
+    <!-- TRACKER AREA -->
+    <section class="tracker-section">
+      <div class="tracker-header">
+        <span class="tracker-title">Daily Log</span>
+      </div>
+      
+      <!-- 
+         HOW TO EDIT:
+         1. Find the number below.
+         2. Add class="good" for Green/Heart.
+         3. Add class="bad" for Red/Cross.
+      -->
+      <div class="grid">
+        <div class="day good">60</div>
+        <div class="day good">59</div>
+        <div class="day good">58</div>
+        <div class="day good">57</div>
+        <div class="day good">56</div>
+        <div class="day good">55</div>
+        <div class="day good">54</div>
+        <div class="day good">53</div>
+        <div class="day good">52</div>
+        <div class="day good">51</div>
+        <div class="day good">50</div>
+        <div class="day good">49</div>
+        <div class="day good">48</div>
+        <div class="day good">47</div>
+        <div class="day good">46</div>
+        <div class="day good">45</div>
+        <div class="day good">44</div>
+        <div class="day good">43</div>
+        <div class="day good">42</div>
+        <div class="day good">41</div>
+        <div class="day good">40</div>
         
-        <div class="day-box heart">60</div>
-        <div class="day-box heart">59</div>
-        <div class="day-box heart">58</div>
-        <div class="day-box heart">57</div>
-        <div class="day-box heart">56</div>
-        <div class="day-box heart">55</div>
-        <div class="day-box heart">54</div>
-        <div class="day-box heart">53</div>
-        <div class="day-box heart">52</div>
-        <div class="day-box heart">51</div>
-        <div class="day-box heart">50</div>
-        <div class="day-box heart">49</div>
-        <div class="day-box heart">48</div>
-        <div class="day-box heart">47</div>
-        <div class="day-box heart">46</div>
-        <div class="day-box heart">45</div>
-        <div class="day-box heart">44</div>
-        <div class="day-box heart">43</div>
-        <div class="day-box heart">42</div>
-        <div class="day-box heart">41</div>
-        <div class="day-box heart">40</div>
-        <div class="day-box">39</div>
-        <div class="day-box">38</div>
-        <div class="day-box">37</div>
-        <div class="day-box">36</div>
-        <div class="day-box">35</div>
-        <div class="day-box">34</div>
-        <div class="day-box">33</div>
-        <div class="day-box">32</div>
-        <div class="day-box">31</div>
-        <div class="day-box">30</div>
-        <div class="day-box">29</div>
-        <div class="day-box">28</div>
-        <div class="day-box">27</div>
-        <div class="day-box">26</div>
-        <div class="day-box">25</div>
-        <div class="day-box">24</div>
-        <div class="day-box">23</div>
-        <div class="day-box">22</div>
-        <div class="day-box">21</div>
-        <div class="day-box">20</div>
-        <div class="day-box">19</div>
-        <div class="day-box">18</div>
-        <div class="day-box">17</div>
-        <div class="day-box">16</div>
-        <div class="day-box">15</div>
-        <div class="day-box">14</div>
-        <div class="day-box">13</div>
-        <div class="day-box">12</div>
-        <div class="day-box">11</div>
-        <div class="day-box">10</div>
-        <div class="day-box">9</div>
-        <div class="day-box">8</div>
-        <div class="day-box">7</div>
-        <div class="day-box">6</div>
-        <div class="day-box">5</div>
-        <div class="day-box">4</div>
-        <div class="day-box">3</div>
-        <div class="day-box">2</div>
-        <div class="day-box">1</div>
-        <div class="day-box">0</div>
+        <!-- NEUTRAL DAYS (Edit these later) -->
+        <div class="day">39</div>
+        <div class="day">38</div>
+        <div class="day">37</div>
+        <div class="day">36</div>
+        <div class="day">35</div>
+        <div class="day">34</div>
+        <div class="day">33</div>
+        <div class="day">32</div>
+        <div class="day">31</div>
+        <div class="day">30</div>
+        <div class="day">29</div>
+        <div class="day">28</div>
+        <div class="day">27</div>
+        <div class="day">26</div>
+        <div class="day">25</div>
+        <div class="day">24</div>
+        <div class="day">23</div>
+        <div class="day">22</div>
+        <div class="day">21</div>
+        <div class="day">20</div>
+        <div class="day">19</div>
+        <div class="day">18</div>
+        <div class="day">17</div>
+        <div class="day">16</div>
+        <div class="day">15</div>
+        <div class="day">14</div>
+        <div class="day">13</div>
+        <div class="day">12</div>
+        <div class="day">11</div>
+        <div class="day">10</div>
+        <div class="day">9</div>
+        <div class="day">8</div>
+        <div class="day">7</div>
+        <div class="day">6</div>
+        <div class="day">5</div>
+        <div class="day">4</div>
+        <div class="day">3</div>
+        <div class="day">2</div>
+        <div class="day">1</div>
+        <div class="day">0</div>
       </div>
-    </div>
+    </section>
 
   </div>
 
 <script>
+  // Simple Countdown Logic
   const countdownEl = document.getElementById('countdown');
   const messageEl = document.getElementById('message');
-
-  // São Paulo time = 2026-01-19 20:10  →  UTC = 2026-01-19 23:10
+  
+  // Target: Jan 19, 2026 20:10 São Paulo Time (UTC 23:10)
   const targetDate = new Date("2026-01-19T23:10:00Z");
 
   function updateCountdown() {
@@ -255,24 +366,23 @@
 
     if (diff <= 0) {
       countdownEl.style.display = 'none';
-      messageEl.textContent = "🎉 It's January 19, 2026, 20:10 in São Paulo!";
       messageEl.style.display = 'block';
       return;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
 
-    document.getElementById('days').textContent = days;
-    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    document.getElementById('days').textContent = d;
+    document.getElementById('hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(s).padStart(2, '0');
   }
 
-  updateCountdown();
   setInterval(updateCountdown, 1000);
+  updateCountdown();
 </script>
 
 </body>

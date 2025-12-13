@@ -118,6 +118,23 @@
       background: rgba(16, 185, 129, 0.1);
     }
 
+    /* --- Visual Countdown Images --- */
+    .visual-countdown {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end; /* Aligns images to the bottom if they have different heights */
+      width: 100%;
+      overflow: hidden; /* Important for images not to overflow when margins are negative */
+      margin-top: 30px;
+    }
+
+    .visual-countdown img {
+      height: 120px; /* Adjust as needed */
+      object-fit: contain;
+      transition: margin-left 1s ease-out, margin-right 1s ease-out; /* Smooth transition */
+      flex-shrink: 0; /* Prevents images from shrinking */
+    }
+
     /* --- PILL BUTTONS --- */
     .nav-pills {
       display: flex;
@@ -238,6 +255,12 @@
       <div class="subtitle">January 19, 2026 • São Paulo</div>
     </header>
 
+    <!-- Visual Countdown Images -->
+    <div class="visual-countdown">
+      <img src="boy1.png" alt="Boy running" id="boyImage">
+      <img src="girl1.png" alt="Girl running" id="girlImage">
+    </div>
+
     <!-- COUNTDOWN JS -->
     <div class="countdown-grid" id="countdown">
       <div class="time-card">
@@ -356,9 +379,16 @@
   // Simple Countdown Logic
   const countdownEl = document.getElementById('countdown');
   const messageEl = document.getElementById('message');
+  const boyImage = document.getElementById('boyImage');
+  const girlImage = document.getElementById('girlImage');
   
   // Target: Jan 19, 2026 20:10 São Paulo Time (UTC 23:10)
   const targetDate = new Date("2026-01-19T23:10:00Z");
+
+  // Define the maximum separation in pixels when the countdown starts (e.g., 90 days out)
+  // And the images meet when daysLeft is 0.
+  const maxSeparationDays = 90; // Adjust this number based on your actual countdown duration
+  const maxMargin = 150; // Max margin in pixels for each image when furthest apart
 
   function updateCountdown() {
     const now = new Date();
@@ -367,6 +397,11 @@
     if (diff <= 0) {
       countdownEl.style.display = 'none';
       messageEl.style.display = 'block';
+      boyImage.style.marginLeft = '0px';
+      girlImage.style.marginRight = '0px';
+      // Hide images or change them to a "together" image
+      // boyImage.style.display = 'none';
+      // girlImage.style.display = 'none';
       return;
     }
 
@@ -379,6 +414,19 @@
     document.getElementById('hours').textContent = String(h).padStart(2, '0');
     document.getElementById('minutes').textContent = String(m).padStart(2, '0');
     document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+
+    // --- Image movement logic ---
+    // Calculate a percentage of the countdown remaining
+    const daysLeft = Math.max(0, d); // Ensure daysLeft doesn't go negative
+    const separationRatio = Math.min(daysLeft / maxSeparationDays, 1); // Clamp between 0 and 1
+
+    // Calculate the current margin. When separationRatio is 1 (max days), margin is maxMargin.
+    // When separationRatio is 0 (0 days), margin is 0.
+    const currentMargin = separationRatio * maxMargin;
+
+    boyImage.style.marginLeft = `${currentMargin}px`;
+    girlImage.style.marginRight = `${currentMargin}px`;
+    // --- End image movement logic ---
   }
 
   setInterval(updateCountdown, 1000);

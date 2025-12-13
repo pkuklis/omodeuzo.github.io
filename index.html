@@ -3,136 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Countdown to Her</title>
+  <title>Until We Meet</title>
   
-  <!-- Modern Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-color: #050505;
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --accent-blue: #38bdf8;
+      --bg-color: #000000;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-color: #38bdf8;
       --accent-pink: #f43f5e;
-      --accent-green: #10b981; /* Bright Green */
+      --accent-green: #10b981;
       --accent-green-glow: rgba(16, 185, 129, 0.4);
       --text-main: #ffffff;
       --text-muted: #94a3b8;
     }
 
-    * { box-sizing: border-box; }
+    * { 
+      box-sizing: border-box; 
+    }
 
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-main);
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
       padding: 40px 20px;
-      background-image: radial-gradient(circle at 50% 0%, #111827 0%, #050505 60%);
     }
 
     .container {
-      max-width: 650px;
+      max-width: 800px;
       width: 100%;
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 40px;
     }
 
-    /* --- HEADER --- */
-    header { text-align: center; }
+    header { 
+      text-align: center; 
+    }
     
     h1 {
-      font-weight: 800;
-      font-size: clamp(24px, 6vw, 40px);
-      margin: 0 0 10px 0;
-      background: linear-gradient(to right, #ffffff, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+      font-size: clamp(32px, 8vw, 56px);
+      margin: 0;
+      letter-spacing: -2px;
     }
 
     .subtitle {
       color: var(--text-muted);
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-size: clamp(14px, 3vw, 16px);
+      margin-top: 5px;
     }
 
-    /* --- COUNTDOWN --- */
+    .visual-countdown {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+    }
+
+    .visual-countdown img {
+      height: 200px;
+      object-fit: contain;
+      transition: transform 1s ease-out;
+      transform-origin: center bottom;
+    }
+
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    @media (max-width: 500px) {
-      .countdown-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
+      gap: 20px;
+      width: 100%;
+      max-width: 600px;
     }
 
     .time-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 20px 10px;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
     .time-number {
       display: block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(28px, 8vw, 42px);
-      font-weight: 700;
-      color: var(--accent-blue);
-      text-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(36px, 10vw, 64px);
+      font-weight: 900;
+      line-height: 1;
     }
 
     .time-label {
       font-size: 12px;
       color: var(--text-muted);
       text-transform: uppercase;
-      margin-top: 5px;
-      font-weight: 600;
+      letter-spacing: 1px;
+      margin-top: 10px;
     }
 
     #message {
       text-align: center;
-      color: var(--accent-green);
-      font-size: 1.5rem;
+      color: var(--accent-color);
+      font-size: 2rem;
       font-weight: bold;
       display: none;
-      padding: 20px;
-      border: 1px solid var(--accent-green);
-      border-radius: 12px;
-      background: rgba(16, 185, 129, 0.1);
-    }
-
-    /* --- Visual Countdown Images --- */
-    .visual-countdown {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end; /* Aligns images to the bottom if they have different heights */
-      width: 100%;
-      overflow: hidden; /* Important for images not to overflow when margins are negative */
-      margin-top: 30px;
-    }
-
-    .visual-countdown img {
-      height: 120px; /* Adjust as needed */
-      object-fit: contain;
-      transition: margin-left 1s ease-out, margin-right 1s ease-out; /* Smooth transition */
-      flex-shrink: 0; /* Prevents images from shrinking */
     }
 
     /* --- PILL BUTTONS --- */
@@ -148,12 +127,11 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       color: var(--text-main);
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 50px;
       font-size: 14px;
       font-weight: 600;
       transition: all 0.2s ease;
-      white-space: nowrap;
     }
 
     .pill:hover {
@@ -178,70 +156,53 @@
       border: 1px solid var(--card-border);
       border-radius: 24px;
       padding: 30px;
-      text-align: center;
+      width: 100%;
+      max-width: 600px;
     }
 
     .tracker-header {
       margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center;
     }
 
-    .tracker-title { font-size: 16px; font-weight: 600; color: var(--text-muted); }
-    .tracker-legend { font-size: 10px; color: #555; }
+    .tracker-title { 
+      font-size: 18px; 
+      font-weight: 700; 
+      color: var(--text-main); 
+    }
 
     .grid {
       display: grid;
-      /* Responsive: Creates squares that fit 6-8 per row depending on mobile/desktop */
-      grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+      gap: 10px;
     }
 
     .day {
       aspect-ratio: 1;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.03);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
-      color: #333; /* Faint number for neutral days */
-      border: 1px solid rgba(255,255,255,0.05);
+      font-weight: 600;
+      color: var(--text-muted);
+      border: 1px solid transparent;
       position: relative;
     }
-
-    /* --- MANUAL STATUS STYLES --- */
     
-    /* Good Day (Green + Heart) */
     .day.good {
       background: var(--accent-green);
       color: #000;
-      font-weight: bold;
-      border: none;
+      border-color: var(--accent-green);
       box-shadow: 0 0 15px var(--accent-green-glow);
     }
-    .day.good::after {
-      content: '♥';
-      font-size: 9px;
-      position: absolute;
-      top: 2px;
-      right: 3px;
-    }
 
-    /* Bad Day (Red + Cross) */
     .day.bad {
-      background: rgba(244, 63, 94, 0.15);
-      border: 1px solid rgba(244, 63, 94, 0.5);
+      background: transparent;
+      border-color: var(--accent-pink);
       color: var(--accent-pink);
-    }
-    .day.bad::after {
-      content: '×';
-      font-size: 14px;
-      position: absolute;
-      top: 0px;
-      right: 4px;
     }
 
   </style>
@@ -250,18 +211,13 @@
 
   <div class="container">
     
-    <header>
-      <h1>Until We Meet</h1>
-      <div class="subtitle">January 19, 2026 • São Paulo</div>
-    </header>
 
-    <!-- Visual Countdown Images -->
+
     <div class="visual-countdown">
-      <img src="boy1.png" alt="Boy running" id="boyImage">
-      <img src="girl1.png" alt="Girl running" id="girlImage">
+      <img src="boy2.png" alt="Figure 1" id="figure1">
+      <img src="girl2.png" alt="Figure 2" id="figure2">
     </div>
 
-    <!-- COUNTDOWN JS -->
     <div class="countdown-grid" id="countdown">
       <div class="time-card">
         <span class="time-number" id="days">0</span>
@@ -280,9 +236,9 @@
         <div class="time-label">Seconds</div>
       </div>
     </div>
+
     <div id="message">🎉 The wait is over!</div>
 
-    <!-- BUTTONS -->
     <nav class="nav-pills">
       <a href="website1.html" class="pill">Website 1</a>
       <a href="website2.html" class="pill">Website 2</a>
@@ -294,114 +250,38 @@
       <a href="website8.html" class="pill special">Website 8</a>
     </nav>
 
-    <!-- TRACKER AREA -->
     <section class="tracker-section">
       <div class="tracker-header">
-        <span class="tracker-title">Daily Log</span>
+        <h2 class="tracker-title">Daily Log</h2>
       </div>
-      
-      <!-- 
-         HOW TO EDIT:
-         1. Find the number below.
-         2. Add class="good" for Green/Heart.
-         3. Add class="bad" for Red/Cross.
-      -->
       <div class="grid">
-        <div class="day good">60</div>
-        <div class="day good">59</div>
-        <div class="day good">58</div>
-        <div class="day good">57</div>
-        <div class="day good">56</div>
-        <div class="day good">55</div>
-        <div class="day good">54</div>
-        <div class="day good">53</div>
-        <div class="day good">52</div>
-        <div class="day good">51</div>
-        <div class="day good">50</div>
-        <div class="day good">49</div>
-        <div class="day good">48</div>
-        <div class="day good">47</div>
-        <div class="day good">46</div>
-        <div class="day good">45</div>
-        <div class="day good">44</div>
-        <div class="day good">43</div>
-        <div class="day good">42</div>
-        <div class="day good">41</div>
-        <div class="day good">40</div>
-        
-        <!-- NEUTRAL DAYS (Edit these later) -->
-        <div class="day good">39</div>
-        <div class="day good">38</div>
-        <div class="day good">37</div>
-        <div class="day">36</div>
-        <div class="day">35</div>
-        <div class="day">34</div>
-        <div class="day">33</div>
-        <div class="day">32</div>
-        <div class="day">31</div>
-        <div class="day">30</div>
-        <div class="day">29</div>
-        <div class="day">28</div>
-        <div class="day">27</div>
-        <div class="day">26</div>
-        <div class="day">25</div>
-        <div class="day">24</div>
-        <div class="day">23</div>
-        <div class="day">22</div>
-        <div class="day">21</div>
-        <div class="day">20</div>
-        <div class="day">19</div>
-        <div class="day">18</div>
-        <div class="day">17</div>
-        <div class="day">16</div>
-        <div class="day">15</div>
-        <div class="day">14</div>
-        <div class="day">13</div>
-        <div class="day">12</div>
-        <div class="day">11</div>
-        <div class="day">10</div>
-        <div class="day">9</div>
-        <div class="day">8</div>
-        <div class="day">7</div>
-        <div class="day">6</div>
-        <div class="day">5</div>
-        <div class="day">4</div>
-        <div class="day">3</div>
-        <div class="day">2</div>
-        <div class="day">1</div>
-        <div class="day">0</div>
+        <div class="day good">60</div><div class="day good">59</div><div class="day good">58</div><div class="day good">57</div><div class="day good">56</div><div class="day good">55</div><div class="day good">54</div><div class="day good">53</div><div class="day good">52</div><div class="day good">51</div><div class="day good">50</div><div class="day good">49</div><div class="day good">48</div><div class="day good">47</div><div class="day good">46</div><div class="day good">45</div><div class="day good">44</div><div class="day good">43</div><div class="day good">42</div><div class="day good">41</div><div class="day good">40</div><div class="day good">39</div><div class="day good">38</div><div class="day good">37</div><div class="day">36</div><div class="day">35</div><div class="day">34</div><div class="day">33</div><div class="day">32</div><div class="day">31</div><div class="day">30</div><div class="day">29</div><div class="day">28</div><div class="day">27</div><div class="day">26</div><div class="day">25</div><div class="day">24</div><div class="day">23</div><div class="day">22</div><div class="day">21</div><div class="day">20</div><div class="day">19</div><div class="day">18</div><div class="day">17</div><div class="day">16</div><div class="day">15</div><div class="day">14</div><div class="day">13</div><div class="day">12</div><div class="day">11</div><div class="day">10</div><div class="day">9</div><div class="day">8</div><div class="day">7</div><div class="day">6</div><div class="day">5</div><div class="day">4</div><div class="day">3</div><div class="day">2</div><div class="day">1</div><div class="day">0</div>
       </div>
     </section>
 
   </div>
 
 <script>
-  // Simple Countdown Logic
   const countdownEl = document.getElementById('countdown');
   const messageEl = document.getElementById('message');
-  const boyImage = document.getElementById('boyImage');
-  const girlImage = document.getElementById('girlImage');
+  const figure1 = document.getElementById('figure1');
+  const figure2 = document.getElementById('figure2');
   
-  // Target: Jan 19, 2026 20:10 São Paulo Time (UTC 23:10)
-  const targetDate = new Date("2026-01-19T23:10:00Z");
+  const targetDate = new Date("2026-01-19T20:00:00-03:00");
 
-  // Define the maximum separation in pixels when the countdown starts (e.g., 90 days out)
-  // And the images meet when daysLeft is 0.
-  const maxSeparationDays = 90; // Adjust this number based on your actual countdown duration
-  const maxMargin = 150; // Max margin in pixels for each image when furthest apart
+  const startCountdownDate = new Date("2025-11-20T20:00:00-03:00"); // Approx 60 days before
+  const totalDuration = targetDate - startCountdownDate;
 
   function updateCountdown() {
     const now = new Date();
     const diff = targetDate - now;
 
     if (diff <= 0) {
-      countdownEl.style.display = 'none';
-      messageEl.style.display = 'block';
-      boyImage.style.marginLeft = '0px';
-      girlImage.style.marginRight = '0px';
-      // Hide images or change them to a "together" image
-      // boyImage.style.display = 'none';
-      // girlImage.style.display = 'none';
+      if(countdownEl) countdownEl.style.display = 'none';
+      if(messageEl) messageEl.style.display = 'block';
+      
+      if(figure1) figure1.style.transform = 'translateX(50%)';
+      if(figure2) figure2.style.transform = 'translateX(-50%)';
       return;
     }
 
@@ -415,18 +295,12 @@
     document.getElementById('minutes').textContent = String(m).padStart(2, '0');
     document.getElementById('seconds').textContent = String(s).padStart(2, '0');
 
-    // --- Image movement logic ---
-    // Calculate a percentage of the countdown remaining
-    const daysLeft = Math.max(0, d); // Ensure daysLeft doesn't go negative
-    const separationRatio = Math.min(daysLeft / maxSeparationDays, 1); // Clamp between 0 and 1
+    const elapsed = now - startCountdownDate;
+    const progress = Math.min(elapsed / totalDuration, 1);
+    const translation = progress * 50; 
 
-    // Calculate the current margin. When separationRatio is 1 (max days), margin is maxMargin.
-    // When separationRatio is 0 (0 days), margin is 0.
-    const currentMargin = separationRatio * maxMargin;
-
-    boyImage.style.marginLeft = `${currentMargin}px`;
-    girlImage.style.marginRight = `${currentMargin}px`;
-    // --- End image movement logic ---
+    if(figure1) figure1.style.transform = `translateX(${translation}%)`;
+    if(figure2) figure2.style.transform = `translateX(-${translation}%)`;
   }
 
   setInterval(updateCountdown, 1000);

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Brasileira ❤️</title>
+    <style>
+        /* Import a romantic font and a clean reading font */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a0000, #8b0000); /* Christmas Red Gradient */
+            font-family: 'Nunito', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container for the letter */
+        .card {
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            margin: 20px 0;
+            border: 2px solid #d4af37; /* Gold border */
+        }
+
+        /* Decorative Elements */
+        .holly {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: #c0392b;
+            font-size: 3rem;
+            margin: 10px 0 20px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Image Styling */
+        .photo-frame {
+            background: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            transform: rotate(-2deg); /* Slight tilt for style */
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* Text Styling */
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a4a4a;
+            text-align: justify; /* Makes it look like a book/letter */
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            margin-top: 30px;
+            color: #c0392b;
+        }
+
+        /* Snow Animation CSS */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 1;
+            color: #fff;
+            user-select: none;
+            pointer-events: none;
+            animation-name: fall;
+            animation-timing-function: linear;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .card { padding: 20px; width: 85%; }
+            .message { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <span class="holly">🎄✨</span>
+        <h1>Minha Joia Rara</h1>
+        
+        <div class="message">
+            <p><strong>Minha joia rara!</strong> Faltam só 26 dias para a gente se encontrar. Estou tão animado, mas ao mesmo tempo ainda parece surreal!</p>
+            
+            <p>Este ano teve tantos altos e baixos, mas ter você como minha namorada ao meu lado foi a melhor coisa que poderia ter acontecido — não me arrependo de nada. Você me faz sentir tão feliz e leve… estou me apaixonando por você de novo e de novo, cada vez mais forte. Sinto nossas almas cada vez mais próximas.</p>
+            
+            <p>Tenho muito orgulho de ter você ao meu lado. Você é a garota mais forte que eu conheço, não só fisicamente, mas principalmente mentalmente. Você passou por tanta coisa e, mesmo assim, manteve a cabeça erguida, riu e amou com todo o seu coração. Você é uma inspiração.</p>
+            
+            <p>Desejo a você e à sua família um Feliz Natal e um ótimo fim de ano, com um lindo começo de 2026 (na Alemanha a gente diz algo como <em>“uma boa escorregada para o novo ano”</em>).</p>
+        </div>
+
+        <div class="signature">
+            Eu te amo, minha brasileira ❤️
+        </div>
+
+                <div class="photo-frame">
+            <!-- Ensure your image is named exactly website9.jpg -->
+            <img src="website9.jpeg" alt="Nós dois">
+        </div>
+    </div>
+
+    <script>
+        // Script to create falling snow emojis
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerText = '❄️';
+            
+            // Randomize position and size
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            // Randomize animation duration (speed)
+            const duration = Math.random() * 3 + 2; // between 2 and 5 seconds
+            snowflake.style.animationDuration = duration + 's';
+            
+            document.body.appendChild(snowflake);
+
+            // Remove snowflake after animation ends to keep browser clean
+            setTimeout(() => {
+                snowflake.remove();
+            }, duration * 1000);
+        }
+
+        // Create a new snowflake every 200 milliseconds
+        setInterval(createSnowflake, 200);
+    </script>
+</body>
+</html>

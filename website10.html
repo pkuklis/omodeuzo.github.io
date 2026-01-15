@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Para Você</title>
+
+		<!-- Importing elegant fonts from Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap"
+			rel="stylesheet"
+		/>
+
+		<style>
+			/* General Page Reset and Styling */
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				/* Deep dark background with a subtle radial gradient for depth */
+				background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+				font-family: 'Cormorant Garamond', serif;
+				color: #dcdcdc; /* Off-white text for readability */
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				padding: 20px;
+				line-height: 1.6;
+			}
+
+			/* The Main Letter Card */
+			.card {
+				background-color: #0d0d0d; /* Very dark charcoal */
+				width: 100%;
+				max-width: 700px;
+				padding: 60px 50px;
+				border-radius: 4px;
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+				text-align: center;
+				opacity: 0; /* Hidden initially for animation */
+				animation: fadeIn 2s ease-out forwards;
+				position: relative;
+				border: 1px solid #222; /* Subtle border definition */
+			}
+
+			/* Decorative top element */
+			.card::before {
+				content: '♥';
+				font-size: 2rem;
+				color: #8a2be2; /* Subtle purple/blue hint, or change to #c0392b for red */
+				color: #ff1763;
+				text-shadow: 0 0 10px rgba(192, 57, 43, 0.4);
+				display: block;
+				margin-bottom: 30px;
+			}
+
+			/* Typography */
+			p {
+				font-size: 1.3rem;
+				margin-bottom: 25px;
+				font-weight: 300;
+				color: #cccccc;
+				text-align: justify;
+				text-align-last: center;
+			}
+
+			/* The "I love you" script text */
+			.love-note {
+				font-family: 'Great Vibes', cursive;
+				font-size: 3.5rem;
+				color: #ffcccc; /* Pale rose */
+				margin: 40px 0 15px 0;
+				display: block;
+				/* Romantic glow effect */
+				text-shadow: 0 0 15px rgba(255, 204, 204, 0.2);
+			}
+
+			.date {
+				font-size: 1rem;
+				color: #666;
+				letter-spacing: 2px;
+				margin-bottom: 40px;
+				font-style: italic;
+				border-top: 1px solid #333;
+				display: inline-block;
+				padding-top: 15px;
+				width: 50%;
+			}
+
+			/* Image Container */
+			.image-container {
+				width: 100%;
+				margin-top: 20px;
+				overflow: hidden;
+				border-radius: 2px;
+				border: 1px solid #222;
+			}
+
+			img {
+				width: 100%;
+				height: auto;
+				display: block;
+				opacity: 0.9; /* Slight dimming to blend with dark theme */
+				transition: all 0.5s ease;
+			}
+
+			/* Gentle hover effect: brightens image and zooms slightly */
+			.image-container:hover img {
+				transform: scale(1.02);
+				opacity: 1;
+			}
+
+			/* Animation Keyframes */
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			/* Mobile Adjustments */
+			@media (max-width: 600px) {
+				.card {
+					padding: 40px 25px;
+					background-color: #050505; /* Even darker on mobile for contrast */
+				}
+				p {
+					font-size: 1.15rem;
+					text-align: left;
+					text-align-last: left;
+				}
+				.love-note {
+					font-size: 2.8rem;
+				}
+				.date {
+					display: block;
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="card">
+			<p>
+				Faltam apenas 4 dias e 4 noites para que eu finalmente possa olhar nos seus olhos castanhos lindos e sentir o calor do seu corpo
+				junto ao meu. Este é o fim do começo, como um dos meus autores favoritos diria.
+			</p>
+
+			<p>
+				Não consigo imaginar entrar nesse novo capítulo da minha vida com nenhuma outra pessoa além de você. De verdade. Foi só você que
+				despertou em mim o desejo de estarmos juntos de verdade, de compartilhar tudo, cuidar de nós e da família que vamos construir, e
+				viver tudo o que a vida tem a oferecer.
+			</p>
+
+			<p>
+				É um desejo que supera qualquer pensamento racional, qualquer barreira cultural, qualquer oceano. E a cada dia que passa, esse
+				desejo por você só fica mais forte.
+			</p>
+
+			<span class="love-note">I love you, meine Frau</span>
+
+			<div class="date">15 de janeiro de 2026</div>
+
+			<div class="image-container">
+				<img src="website10.jpeg" alt="Paisagem especial" />
+			</div>
+		</div>
+	</body>
+</html>

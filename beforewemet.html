@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<title>Until We Meet</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+
+		<style>
+			:root {
+				--bg-color: #000000;
+				--card-bg: rgba(255, 255, 255, 0.05);
+				--card-border: rgba(255, 255, 255, 0.1);
+				--accent-color: #38bdf8;
+				--accent-pink: #f43f5e;
+				--accent-green: #10b981;
+				--accent-green-glow: rgba(16, 185, 129, 0.4);
+				--text-main: #ffffff;
+				--text-muted: #94a3b8;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				font-family: 'Inter', sans-serif;
+				background-color: var(--bg-color);
+				color: var(--text-main);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				min-height: 100vh;
+				padding: 40px 20px;
+			}
+
+			.container {
+				max-width: 800px;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 40px;
+			}
+
+			header {
+				text-align: center;
+			}
+
+			h1 {
+				font-weight: 900;
+				font-size: clamp(32px, 8vw, 56px);
+				margin: 0;
+				letter-spacing: -2px;
+			}
+
+			.subtitle {
+				color: var(--text-muted);
+				font-size: clamp(14px, 3vw, 16px);
+				margin-top: 5px;
+			}
+
+			.visual-countdown {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+				width: 100%;
+			}
+
+			.visual-countdown img {
+				height: 200px;
+				object-fit: contain;
+				transition: transform 1s ease-out;
+				transform-origin: center bottom;
+			}
+
+			.countdown-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 20px;
+				width: 100%;
+				max-width: 600px;
+			}
+
+			.time-card {
+				text-align: center;
+			}
+
+			.time-number {
+				display: block;
+				font-family: 'Inter', sans-serif;
+				font-size: clamp(36px, 10vw, 64px);
+				font-weight: 900;
+				line-height: 1;
+			}
+
+			.time-label {
+				font-size: 12px;
+				color: var(--text-muted);
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				margin-top: 10px;
+			}
+
+			#message {
+				text-align: center;
+				color: var(--accent-color);
+				font-size: 2rem;
+				font-weight: bold;
+				display: none;
+			}
+
+			/* --- PILL BUTTONS --- */
+			.nav-pills {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 12px;
+			}
+
+			.pill {
+				text-decoration: none;
+				background: var(--card-bg);
+				border: 1px solid var(--card-border);
+				color: var(--text-main);
+				padding: 10px 20px;
+				border-radius: 50px;
+				font-size: 14px;
+				font-weight: 600;
+				transition: all 0.2s ease;
+			}
+
+			.pill:hover {
+				background: var(--text-main);
+				color: var(--bg-color);
+				transform: translateY(-2px);
+			}
+
+			.pill.special {
+				background: rgba(244, 63, 94, 0.1);
+				border-color: rgba(244, 63, 94, 0.4);
+				color: var(--accent-pink);
+			}
+			.pill.special:hover {
+				background: var(--accent-pink);
+				color: white;
+			}
+
+			/* --- TRACKER GRID --- */
+			.tracker-section {
+				background: var(--card-bg);
+				border: 1px solid var(--card-border);
+				border-radius: 24px;
+				padding: 30px;
+				width: 100%;
+				max-width: 600px;
+			}
+
+			.tracker-header {
+				margin-bottom: 20px;
+				text-align: center;
+			}
+
+			.tracker-title {
+				font-size: 18px;
+				font-weight: 700;
+				color: var(--text-main);
+			}
+
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+				gap: 10px;
+			}
+
+			.day {
+				aspect-ratio: 1;
+				background: rgba(255, 255, 255, 0.03);
+				border-radius: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: 'Inter', sans-serif;
+				font-size: 14px;
+				font-weight: 600;
+				color: var(--text-muted);
+				border: 1px solid transparent;
+				position: relative;
+			}
+
+			.day.good {
+				background: var(--accent-green);
+				color: #000;
+				border-color: var(--accent-green);
+				box-shadow: 0 0 15px var(--accent-green-glow);
+			}
+
+			.day.bad {
+				background: transparent;
+				border-color: var(--accent-pink);
+				color: var(--accent-pink);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="visual-countdown">
+				<img src="boy2.png" alt="Figure 1" id="figure1" />
+				<img src="girl2.png" alt="Figure 2" id="figure2" />
+			</div>
+
+			<div class="countdown-grid" id="countdown">
+				<div class="time-card">
+					<span class="time-number" id="days">0</span>
+					<div class="time-label">Days</div>
+				</div>
+				<div class="time-card">
+					<span class="time-number" id="hours">00</span>
+					<div class="time-label">Hours</div>
+				</div>
+				<div class="time-card">
+					<span class="time-number" id="minutes">00</span>
+					<div class="time-label">Minutes</div>
+				</div>
+				<div class="time-card">
+					<span class="time-number" id="seconds">00</span>
+					<div class="time-label">Seconds</div>
+				</div>
+			</div>
+
+			<div id="message">🎉🎉🎉</div>
+
+			<nav class="nav-pills">
+				<a href="website1.html" class="pill">Website 1</a>
+				<a href="website2.html" class="pill">Website 2</a>
+				<a href="website3.html" class="pill">Website 3</a>
+				<a href="website4.html" class="pill">Website 4</a>
+				<a href="website5.html" class="pill">Website 5</a>
+				<a href="website6.html" class="pill">Website 6</a>
+				<a href="website7.html" class="pill">Website 7</a>
+				<a href="website8.html" class="pill">Website 8</a>
+				<a href="website9.html" class="pill">Website 9</a>
+				<a href="letter1.html" class="pill">Letter 1</a>
+				<a href="website10.html" class="pill special">Website 10</a>
+			</nav>
+
+			<section class="tracker-section">
+				<div class="grid">
+					<div class="day good">20</div>
+					<div class="day good">19</div>
+					<div class="day good">18</div>
+					<div class="day good">17</div>
+					<div class="day good">16</div>
+					<div class="day good">15</div>
+					<div class="day good">14</div>
+					<div class="day good">13</div>
+					<div class="day good">12</div>
+					<div class="day good">11</div>
+					<div class="day good">10</div>
+					<div class="day good">9</div>
+					<div class="day good">8</div>
+					<div class="day good">7</div>
+					<div class="day good">6</div>
+					<div class="day good">5</div>
+					<div class="day good">4</div>
+					<div class="day good">3</div>
+					<div class="day good">2</div>
+					<div class="day good">1</div>
+					<div class="day good">0</div>
+				</div>
+			</section>
+		</div>
+
+		<script>
+			const countdownEl = document.getElementById('countdown');
+			const messageEl = document.getElementById('message');
+			const figure1 = document.getElementById('figure1');
+			const figure2 = document.getElementById('figure2');
+			const visualCountdown = document.querySelector('.visual-countdown');
+
+			const targetDate = new Date('2026-01-19T20:00:00-03:00');
+			const daysDuration = 60;
+			const startCountdownDate = new Date(targetDate.getTime() - daysDuration * 24 * 60 * 60 * 1000);
+			const totalDuration = Math.max(targetDate - startCountdownDate, 1);
+
+			const overlapOffset = 11; // allow slight overlap so hands touch
+
+			function moveFigures(progress) {
+				if (!figure1 || !figure2 || !visualCountdown) return;
+				const containerWidth = visualCountdown.clientWidth;
+				const figure1Width = figure1.clientWidth;
+				const figure2Width = figure2.clientWidth;
+				const gap = Math.max(containerWidth - (figure1Width + figure2Width), 0);
+				const maxTranslation = gap / 2 + overlapOffset;
+				const translation = maxTranslation * progress;
+				figure1.style.transform = `translateX(${translation}px)`;
+				figure2.style.transform = `translateX(-${translation}px)`;
+			}
+
+			function updateCountdown() {
+				const now = new Date();
+				const diff = targetDate - now;
+
+				if (diff <= 0) {
+					if (countdownEl) countdownEl.style.display = 'none';
+					if (messageEl) messageEl.style.display = 'block';
+					moveFigures(1);
+					return;
+				}
+
+				const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+				const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+				const m = Math.floor((diff / (1000 * 60)) % 60);
+				const s = Math.floor((diff / 1000) % 60);
+
+				document.getElementById('days').textContent = d;
+				document.getElementById('hours').textContent = String(h).padStart(2, '0');
+				document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+				document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+
+				const elapsed = now - startCountdownDate;
+				const progress = Math.min(Math.max(elapsed / totalDuration, 0), 1);
+				moveFigures(progress);
+			}
+
+			setInterval(updateCountdown, 1000);
+			updateCountdown();
+		</script>
+	</body>
+</html>
